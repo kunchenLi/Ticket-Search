@@ -36,8 +36,6 @@ public class GeoRecommendation {
       recommendedItems.addAll(items);
     }
 
-    // Student question: why we use list now instead of set?
-    // Answer: because we will have ranking now.
     List<Item> filteredItems = new ArrayList<>();  // step 4
     for (Item item : recommendedItems) {
       if (!favoriteItems.contains(item.getItemId())) {
@@ -49,9 +47,6 @@ public class GeoRecommendation {
     Collections.sort(filteredItems, new Comparator<Item>() {
       @Override
       public int compare(Item item1, Item item2) {
-        // Student question: can we make this ranking even better with
-        // more dimensions?
-        // What other feathers can be used here?
         double distance1 = getDistance(item1.getLatitude(), item1.getLongitude(), lat, lon);
         double distance2 = getDistance(item2.getLatitude(), item2.getLongitude(), lat, lon);
         // return the increasing order of distance.
@@ -63,7 +58,6 @@ public class GeoRecommendation {
   }
 
   // Calculate the distances between two geolocations.
-  // Source : http://andrew.hedges.name/experiments/haversine/
   private static double getDistance(double lat1, double lon1, double lat2, double lon2) {
     double dlon = lon2 - lon1;
     double dlat = lat2 - lat1;
